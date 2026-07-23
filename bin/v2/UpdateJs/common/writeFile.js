@@ -1,10 +1,14 @@
 import fs from "fs";
+import readFile from "./readFile.js";
 
-const writeFile = (inAppJsPath, inContent) => {
-    const localPath = inAppJsPath;
-    const localContent = inContent;
+const writeFile = ({ inJsFilePath, inInsertLineIndex, toInsertLine }) => {
+    const content = readFile(inJsFilePath);
 
-    fs.writeFileSync(localPath, localContent);
+    const lines = content.split("\n");
+
+    const updatedLines = lines.toSpliced(inInsertLineIndex - 1, 0, toInsertLine);
+
+    fs.writeFileSync(inJsFilePath, updatedLines.join("\n"));
 };
 
 export default writeFile;

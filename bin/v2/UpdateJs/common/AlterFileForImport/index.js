@@ -5,12 +5,9 @@ import writeFile from "../writeFile.js";
 
 import buildUpdatedContent from "./buildUpdatedContent.js";
 
-const locateInsertPoint = ({ content, insertAfter }) => {
-    return findInsertIndex({
-        inContent: content,
-        inPatterns: insertAfter
-    });
-};
+import getStory from "pattern-collector-anyjs";
+
+import extractRegex from './extractRegex.js';
 
 const alterFile = ({
     jsFilePath,
@@ -21,10 +18,16 @@ const alterFile = ({
 }) => {
     const content = readFile(jsFilePath);
 
+    const fromPatternCollector = getStory({
+        fileContent: content,
+        extractRegex
+    });
+    // fromPatternCollector. summary.    importSummary. minLineNumber
+
+
     const duplicateInfo = checkDuplicate({
-        inContent: content,
-        inFilePath: jsFilePath,
-        inSearchText: duplicationCheck
+        inSearchText: duplicationCheck,
+        inFileContentAsStory: fromPatternCollector
     });
 
     if (duplicateInfo.found) {
@@ -32,24 +35,25 @@ const alterFile = ({
             console.log(
                 `Duplicate found at line ${duplicateInfo.lineNumber}`
             );
-        }
+        };
 
         return duplicateInfo;
     };
 
-    const insertInfo = locateInsertPoint({
-        content,
-        insertAfter
-    });
-
     const updated = buildUpdatedContent({
         content,
-        insertInfo,
+        insertInfo: fromPatternCollector.summary.importSummary.minLineNumber,
         toInsertLine,
         insertAfter
     });
 
-    writeFile(jsFilePath, updated);
+    // console.log("aaaaaaaaaaaaaa : ", updated);
+    // writeFile(jsFilePath, updated, fromPatternCollector.summary.importSummary.minLineNumber, toInsertLine);
+    writeFile({
+        inJsFilePath: jsFilePath,
+        inInsertLineIndex: fromPatternCollector.summary.importSummary.minLineNumber,
+        toInsertLine
+    });
 
     return {
         found: false,

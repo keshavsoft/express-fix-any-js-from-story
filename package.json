@@ -1,6 +1,6 @@
 {
-  "name": "express-fix-any-js",
-  "version": "1.2.4",
+  "name": "express-fix-any-js-from-story",
+  "version": "1.2.5",
   "description": "CLI to build for appjs, the endpoints",
   "keywords": [
     "cli",
@@ -11,14 +11,14 @@
   ],
   "dependencies": {
     "express-check-any-for-import": "^1.4.7",
-    "pattern-collector-anyjs": "^1.6.3"
+    "pattern-collector-anyjs": "^1.6.4"
   },
   "type": "module",
   "exports": {
     ".": "./index.js"
   },
   "bin": {
-    "express-fix-any-js": "./bin/cli.js"
+    "express-fix-any-js-from-story": "./bin/cli.js"
   },
   "files": [
     "bin/",
@@ -29,9 +29,9 @@
   "homepage": "https://cli.keshavsoft.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/keshavsoft/express-fix-any-js"
+    "url": "https://github.com/keshavsoft/express-fix-any-js-from-story"
   },
   "bugs": {
-    "url": "https://github.com/keshavsoft/express-fix-any-js/issues"
+    "url": "https://github.com/keshavsoft/express-fix-any-js-from-story/issues"
   }
 }

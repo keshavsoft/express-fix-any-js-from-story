@@ -1,24 +1,14 @@
-import { isImportPresent } from "express-check-any-for-import";
-import fromPatternCollector from "pattern-collector-anyjs";
+const checkUseDuplicate = ({ inSearchText, inFileContentAsStory }) => {
 
-import extractRegex from './extractRegex.js';
-
-const checkUseDuplicate = ({ inContent, inFilePath, inSearchText }) => {
-    const cleanText = inSearchText.match(/['"]([^'"]+)['"]/)?.[1] || inSearchText;
-    const found = isImportPresent(inContent, cleanText) || inContent.includes(inSearchText);
-
-    const k1 = fromPatternCollector({
-        fileContent: inContent,
-        extractRegex
+    const found = inFileContentAsStory.importLines.find(element => {
+        return element.folderName === inSearchText;
     });
 
-    console.log("aaaaaaaaa : ", k1);
-
+    // console.log("aaaaaaaaa : ", inSearchText, found);
 
     return {
         found,
-        filePath: inFilePath,
-        lineNumber: found ? inContent.split("\n").findIndex(line => line.includes(cleanText)) + 1 : null
+        lineNumber: found ? found.lineNumber : null
     };
 };
 
