@@ -8,7 +8,7 @@ import getLatestVersion from "../../bin/core/getLatestVersion.js";
 import checkLines from "./checkLines.json" with { type: "json" };
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const appJsPath = path.join(__dirname, "app.js");
+const appJsPath = path.join(__dirname, "routes.js");
 
 function runTests() {
     const latestVersion = getLatestVersion();
