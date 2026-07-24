@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>express-fix-any-js | Developer Hub</title>
+  <title>Express.js Routing Fixer Suite | Developer Hub</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,99 +48,81 @@
       width: 8px;
       height: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: var(--bg-dark);
     }
+
     ::-webkit-scrollbar-thumb {
       background: var(--border-color);
       border-radius: 4px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
-      background: var(--primary);
+      background: #334155;
     }
 
-    /* Navigation */
+    /* Navbar */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 8%;
-      background: rgba(7, 10, 19, 0.7);
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(7, 10, 19, 0.85);
       backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     nav .logo {
       font-family: var(--font-outfit);
-      font-size: 1.5rem;
       font-weight: 800;
+      font-size: 1.5rem;
       letter-spacing: -0.5px;
       background: var(--primary-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     nav .logo span {
-      font-size: 0.8rem;
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--primary);
-      padding: 4px 8px;
-      border-radius: 6px;
-      border: 1px solid rgba(56, 189, 248, 0.2);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-left: 8px;
+      font-family: var(--font-inter);
+      font-weight: 400;
+      background: none;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+      border: 1px solid var(--border-color);
+      padding: 2px 8px;
+      border-radius: 20px;
     }
 
     nav ul {
       display: flex;
-      gap: 30px;
       list-style: none;
-      align-items: center;
+      gap: 30px;
     }
 
-    nav ul a {
+    nav ul li a {
       color: var(--text-muted);
       text-decoration: none;
-      font-weight: 500;
       font-size: 0.95rem;
+      font-weight: 500;
       transition: color 0.3s ease;
     }
 
-    nav ul a:hover {
+    nav ul li a:hover {
       color: var(--primary);
     }
 
-    nav .btn-github {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      padding: 8px 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    nav .btn-github:hover {
-      background: var(--primary-gradient);
-      border-color: transparent;
-      color: #000;
-      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
-    }
-
-    /* Hero */
+    /* Hero Header */
     header {
-      padding: 80px 8% 60px 8%;
+      padding: 100px 8% 60px 8%;
       text-align: center;
-      max-width: 1200px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -148,7 +130,7 @@
       font-family: var(--font-outfit);
       font-size: 3.5rem;
       font-weight: 800;
-      line-height: 1.2;
+      line-height: 1.15;
       margin-bottom: 24px;
       letter-spacing: -1px;
     }
@@ -160,88 +142,115 @@
     }
 
     header p {
-      font-size: 1.2rem;
       color: var(--text-muted);
-      max-width: 800px;
-      margin: 0 auto 40px auto;
+      font-size: 1.15rem;
+      margin-bottom: 40px;
+      line-height: 1.7;
     }
 
-    /* Quick Install */
-    .install-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 16px 24px;
-      border-radius: 12px;
-      max-width: 480px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.95rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    .install-box span {
-      color: var(--accent-violet);
-    }
-
-    .install-box button {
-      background: rgba(255, 255, 255, 0.05);
-      border: none;
-      color: var(--primary);
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .install-box button:hover {
-      background: rgba(56, 189, 248, 0.15);
-    }
-
-    /* Interactive Simulator Section */
-    .simulator-section {
+    /* The Story Section */
+    .story-section {
       padding: 60px 8%;
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .simulator-title {
+    .story-title {
       font-family: var(--font-outfit);
       font-size: 2.2rem;
       font-weight: 700;
       text-align: center;
       margin-bottom: 12px;
-      letter-spacing: -0.5px;
     }
 
-    .simulator-subtitle {
-      text-align: center;
+    .story-subtitle {
       color: var(--text-muted);
-      margin-bottom: 40px;
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 1.1rem;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .story-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px 30px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56, 189, 248, 0.3);
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.05);
+    }
+
+    .story-card h3 {
+      font-family: var(--font-outfit);
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .story-card .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .badge-import {
+      background: rgba(167, 139, 250, 0.15);
+      color: var(--accent-violet);
+    }
+
+    .badge-consumption {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-green);
+    }
+
+    .badge-orchestrator {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+    }
+
+    .story-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Simulator */
+    .simulator-section {
+      background: #090e1a;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 80px 8%;
     }
 
     .simulator-container {
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-      position: relative;
-    }
-
-    @media (max-width: 900px) {
-      .simulator-container {
-        grid-template-columns: 1fr;
-      }
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
     }
 
     .sim-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -250,10 +259,9 @@
     .sim-panel h3 {
       font-family: var(--font-outfit);
       font-size: 1.25rem;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
     }
 
     .form-group {
@@ -263,19 +271,17 @@
     }
 
     .form-group label {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
     .form-group input, .form-group textarea {
-      background: var(--bg-dark);
+      background: #05070d;
       border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
       color: var(--text-main);
-      padding: 12px 16px;
-      border-radius: 10px;
       font-family: var(--font-mono);
       font-size: 0.9rem;
       outline: none;
@@ -287,16 +293,16 @@
     }
 
     .code-editor {
-      position: relative;
-      flex-grow: 1;
+      background: #05070d;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
 
     .code-preview {
-      background: #04060b;
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
       padding: 20px;
       font-family: var(--font-mono);
       font-size: 0.85rem;
@@ -317,101 +323,6 @@
       display: none;
       align-items: center;
       gap: 10px;
-    }
-
-    /* Info Cards Grid */
-    .features-section {
-      padding: 80px 8%;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-    }
-
-    .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 35px 30px;
-      border-radius: 16px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: var(--primary-gradient);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(56, 189, 248, 0.3);
-      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.05);
-    }
-
-    .feature-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .feature-card h3 {
-      font-family: var(--font-outfit);
-      font-size: 1.4rem;
-      margin-bottom: 16px;
-      font-weight: 700;
-    }
-
-    .feature-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    /* Documentation links */
-    .docs-section {
-      padding: 40px 8% 80px 8%;
-      max-width: 1000px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .docs-list {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    .doc-link {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      padding: 14px 28px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .doc-link:hover {
-      border-color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(56, 189, 248, 0.1);
     }
 
     /* Footer */
@@ -437,35 +348,66 @@
 
   <!-- Nav -->
   <nav>
-    <div class="logo">express-fix-any-js <span>V6</span></div>
+    <div class="logo">routing-fixer-suite <span>V1.5</span></div>
     <ul>
-      <li><a href="#simulator">Interactive Sim</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#docs">Documentation</a></li>
+      <li><a href="#story">The Story</a></li>
+      <li><a href="#simulator">Simulator</a></li>
     </ul>
-    <a href="https://github.com/keshavsoft/express-fix-any-js" target="_blank" class="btn-github">
-      <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-      GitHub
-    </a>
   </nav>
 
   <!-- Hero Header -->
   <header>
-    <h1>Idempotent & Clean <span>Express Routing</span> Repair</h1>
+    <h1>Idempotent & Modular <span>Express Routing</span> Repair</h1>
     <p>
-      An advanced developer utility that dynamically injects missing imports, exports, and router paths 
-      into files with full duplicate protection. Standardizes formatting, preserves hierarchy, and speeds up scaffolding.
+      An advanced trio of orchestrating tools that inspect, parse, and repair Express.js routing files dynamically 
+      with complete duplication safeguard and strict architectural line formatting.
     </p>
-    <div class="install-box">
-      <div><span>$</span> npm install express-fix-any-js</div>
-      <button onclick="copyInstall()">Copy</button>
-    </div>
   </header>
+
+  <!-- The Story Section -->
+  <section class="story-section" id="story">
+    <div class="story-title">How the Suite Fits Together</div>
+    <div class="story-subtitle">Three specialized components acting in alignment.</div>
+    
+    <div class="story-grid">
+      
+      <!-- Import Fixer -->
+      <div class="story-card">
+        <span class="badge badge-import">Imports</span>
+        <h3>Route Imports Fixer</h3>
+        <p>
+          Manages safe insertion of routing imports. Scans files to verify if target declarations exist 
+          prior to running mutations. Keeps top-level scope clean and conflict-free.
+        </p>
+      </div>
+
+      <!-- Consumption Fixer -->
+      <div class="story-card">
+        <span class="badge badge-consumption">Consumption</span>
+        <h3>Route Consumption Fixer</h3>
+        <p>
+          Applies endpoint utilization setups (`router.use` or `router.post`). Enforces strict line alignments 
+          (zero spacing between routers, correct padding around block bounds).
+        </p>
+      </div>
+
+      <!-- Orchestrator CLI -->
+      <div class="story-card">
+        <span class="badge badge-orchestrator">Orchestration</span>
+        <h3>Orchestrator CLI</h3>
+        <p>
+          Takes high-level declarations and pipelines them to trigger both the Imports and Consumption Fixers sequentially. 
+          Produces fully aligned, runnable endpoints instantly.
+        </p>
+      </div>
+
+    </div>
+  </section>
 
   <!-- Simulator Section -->
   <section class="simulator-section" id="simulator">
-    <div class="simulator-title">Interactive Workflow Simulator</div>
-    <div class="simulator-subtitle">Experiment with the `alterFile` configuration rules live in your browser.</div>
+    <div class="story-title">Interactive Orchestration Simulator</div>
+    <div class="story-subtitle">Experiment with the cascading builder setup live.</div>
     
     <div class="simulator-container">
       
@@ -479,24 +421,17 @@
 
 const router = express.Router();
 
-router.post("/Alter", express.json(), handler);
-
 export { router };</textarea>
         </div>
         
         <div class="form-group">
-          <label>Code to Insert (toInsertLine)</label>
-          <input type="text" id="insert-line" value="router.post('/Create', express.json(), CreateFunc);">
+          <label>Import Line to Add</label>
+          <input type="text" id="import-line" value="import GetRoutes from './routes/GetRoutes.js';">
         </div>
         
         <div class="form-group">
-          <label>Duplicate Search Term (duplicationCheck)</label>
-          <input type="text" id="dup-check" value="router.post('/Create'">
-        </div>
-        
-        <div class="form-group">
-          <label>Insert After Patterns (comma separated)</label>
-          <input type="text" id="insert-after" value="router.post('/Alter', const router = express.Router();">
+          <label>Consumption Line to Add</label>
+          <input type="text" id="consumption-line" value="router.use('/Get', GetRoutes);">
         </div>
       </div>
       
@@ -504,58 +439,13 @@ export { router };</textarea>
       <div class="sim-panel">
         <h3>🖥️ Output / Generated File</h3>
         
-        <div class="log-panel" id="log-display">
-          <!-- Warnings display here -->
-        </div>
+        <div class="log-panel" id="log-display"></div>
         
         <div class="code-editor">
           <div class="code-preview" id="code-preview-display"></div>
         </div>
       </div>
       
-    </div>
-  </section>
-
-  <!-- Features Grid -->
-  <section class="features-section" id="features">
-    <div class="grid-container">
-      
-      <div class="feature-card">
-        <h3>🔒 Double Insertion Protection</h3>
-        <p>
-          Using built-in duplication scanners, files are safely guarded. If the code segment already exists in any shape or form, the scan skips modification entirely, keeping your git logs clean.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <h3>📏 Architectural Spacing Rules</h3>
-        <p>
-          Enforces clean routing aesthetics. Automatically keeps route handlers consecutive without vertical padding lines, but inserts clean spacing after initialization blocks and before module exports.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <h3>🔌 Upstream/Downstream Cascade</h3>
-        <p>
-          Acts as the central library core. Powers higher-level packages like `express-fix-endpoints-get-js` and the VS Code Generator Extension to automatically scaffold routes directly from workspace selections.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Docs Section -->
-  <section class="docs-section" id="docs">
-    <div class="simulator-title">Developer Technical Guides</div>
-    <div class="simulator-subtitle">Detailed documentation files created dynamically for code inspection.</div>
-    
-    <div class="docs-list">
-      <a class="doc-link" href="alter_file_analysis.md">
-        📄 AlterFile Architecture Analysis
-      </a>
-      <a class="doc-link" href="code_style_and_readability.md">
-        📄 Style & Refactoring Proposal
-      </a>
     </div>
   </section>
 
@@ -568,72 +458,43 @@ export { router };</textarea>
   <!-- Simulator Logic Script -->
   <script>
     const mockContentEl = document.getElementById('mock-content');
-    const insertLineEl = document.getElementById('insert-line');
-    const dupCheckEl = document.getElementById('dup-check');
-    const insertAfterEl = document.getElementById('insert-after');
+    const importLineEl = document.getElementById('import-line');
+    const consumptionLineEl = document.getElementById('consumption-line');
     const previewEl = document.getElementById('code-preview-display');
     const logEl = document.getElementById('log-display');
 
-    function copyInstall() {
-      navigator.clipboard.writeText('npm install express-fix-any-js');
-      alert('Install command copied to clipboard!');
-    }
-
     function runSimulation() {
-      const content = mockContentEl.value;
-      const toInsertLine = insertLineEl.value;
-      const duplicationCheck = dupCheckEl.value;
-      const insertAfterList = insertAfterEl.value.split(',').map(s => s.trim()).filter(Boolean);
+      let content = mockContentEl.value;
+      const importLine = importLineEl.value;
+      const consumptionLine = consumptionLineEl.value;
 
-      // 1. Duplicate check
-      if (content.includes(duplicationCheck)) {
-        logEl.style.display = 'flex';
-        logEl.innerHTML = `⚠️ Duplicate found! Search term "${duplicationCheck}" already exists. Skip update.`;
-        previewEl.style.color = '#94a3b8';
-        previewEl.textContent = content;
-        return;
+      // Simulate Import insertion
+      if (!content.includes(importLine)) {
+        const lines = content.split('\n');
+        // Insert after first line
+        lines.splice(1, 0, importLine);
+        content = lines.join('\n');
       }
 
-      logEl.style.display = 'none';
-      previewEl.style.color = 'var(--accent-green)';
-
-      // 2. Find insert point
-      const lines = content.split('\n');
-      let matchedIndex = -1;
-      let matchedPattern = null;
-
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        const match = insertAfterList.find(p => line.includes(p));
-        if (match) {
-          matchedIndex = i;
-          matchedPattern = match;
-        }
-      }
-
-      if (matchedIndex === -1) {
-        // Fallback to appending at the end
-        lines.push(toInsertLine);
-      } else {
-        const isFirstInsert = matchedPattern === insertAfterList[insertAfterList.length - 1];
-        const beforeLines = lines.slice(0, matchedIndex + 1);
-        const afterLines = lines.slice(matchedIndex + 1);
-        
-        if (isFirstInsert) {
-          lines.splice(matchedIndex + 1, 0, "", toInsertLine);
+      // Simulate Consumption insertion
+      if (!content.includes(consumptionLine)) {
+        const lines = content.split('\n');
+        // Find insert index (before export)
+        const exportIndex = lines.findIndex(l => l.includes('export'));
+        if (exportIndex !== -1) {
+          lines.splice(exportIndex, 0, consumptionLine, "");
         } else {
-          lines.splice(matchedIndex + 1, 0, toInsertLine);
+          lines.push(consumptionLine);
         }
+        content = lines.join('\n');
       }
 
-      previewEl.textContent = lines.join('\n');
+      previewEl.textContent = content;
     }
 
-    // Attach listeners
     mockContentEl.addEventListener('input', runSimulation);
-    insertLineEl.addEventListener('input', runSimulation);
-    dupCheckEl.addEventListener('input', runSimulation);
-    insertAfterEl.addEventListener('input', runSimulation);
+    importLineEl.addEventListener('input', runSimulation);
+    consumptionLineEl.addEventListener('input', runSimulation);
 
     // Initial run
     runSimulation();
