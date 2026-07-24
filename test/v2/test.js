@@ -13,7 +13,7 @@ const appJsPath = path.join(__dirname, "routes.js");
 function runTests() {
     const latestVersion = getLatestVersion();
 
-    const checkLinesString = checkLines.simple;
+    const checkLinesString = checkLines;
 
     const output = index({
         showLog: true,

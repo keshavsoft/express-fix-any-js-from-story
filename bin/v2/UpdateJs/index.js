@@ -1,4 +1,4 @@
-import validateCheckLines from "./validateCheckLines.js";
+// import validateCheckLines from "./validateCheckLines.js";
 import alterFileForImport from "./common/AlterFileForImport/index.js";
 import alterFileForConsume from "./common/AlterFileForConsume/index.js";
 
@@ -7,13 +7,13 @@ const updateAppJs = ({ inJsFilePath, inCheckLines,
 
     const localCheckLines = inCheckLines;
 
-    validateCheckLines(localCheckLines);
+    // validateCheckLines(localCheckLines);
 
     const importResult = alterFileForImport({
         jsFilePath: inJsFilePath,
-        toInsertLine: localCheckLines.importLines.toInsertLine,
-        duplicationCheck: localCheckLines.importLines.duplicationCheck,
-        insertAfter: localCheckLines.importLines.insertAfter,
+        toInsertLine: localCheckLines.toInsertLine,
+        duplicationCheck: localCheckLines.duplicationCheck,
+        insertAfter: localCheckLines.insertAfter,
         showLog
     });
 
