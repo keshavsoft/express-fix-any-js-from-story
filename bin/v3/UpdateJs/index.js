@@ -1,7 +1,9 @@
 import alterFileForImport from "./common/AlterFileForImport/index.js";
 
 const updateAppJs = ({ inJsFilePath, inCheckLines, extractRegex,
-    showLog = false }) => {
+    showLog = false, showLogStep1, showLogStep2, showLogStep3 }) => {
+
+    if (showLog) console.log("inputs : ", inJsFilePath, inCheckLines, extractRegex);
 
     const localCheckLines = inCheckLines;
 
@@ -11,7 +13,7 @@ const updateAppJs = ({ inJsFilePath, inCheckLines, extractRegex,
         duplicationCheck: localCheckLines.duplicationCheck,
         insertAfter: localCheckLines.insertAfter,
         extractRegex,
-        showLog
+        showLog, showLogStep1, showLogStep2, showLogStep3
     });
 
     return { importResult };

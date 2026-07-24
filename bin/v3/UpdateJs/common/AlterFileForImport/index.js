@@ -3,8 +3,6 @@ import checkDuplicate from "./checkDuplicate.js";
 import findInsertIndex from "./findInsertIndex.js";
 import writeFile from "../writeFile.js";
 
-import buildUpdatedContent from "./buildUpdatedContent.js";
-
 import getStory from "pattern-collector-anyjs";
 
 // import extractRegex from './extractRegex.js';
@@ -15,16 +13,18 @@ const alterFile = ({
     duplicationCheck,
     insertAfter = [],
     showLog = false,
-    extractRegex
+    extractRegex, showLogStep1, showLogStep2, showLogStep3
 }) => {
+    if (showLog) console.log("inputs : ", jsFilePath, toInsertLine, duplicationCheck, insertAfter);
+
     const content = readFile(jsFilePath);
 
     const fromPatternCollector = getStory({
         fileContent: content,
-        extractRegex
+        extractRegex,
+        showLog: showLogStep1,
+        showLogStep1: showLogStep2, showLogStep3
     });
-    // fromPatternCollector. summary.    importSummary. minLineNumber
-
 
     const duplicateInfo = checkDuplicate({
         inSearchText: duplicationCheck,
@@ -40,13 +40,6 @@ const alterFile = ({
 
         return duplicateInfo;
     };
-
-    const updated = buildUpdatedContent({
-        content,
-        insertInfo: fromPatternCollector.summary.importSummary.minLineNumber,
-        toInsertLine,
-        insertAfter
-    });
 
     // console.log("aaaaaaaaaaaaaa : ", updated);
     // writeFile(jsFilePath, updated, fromPatternCollector.summary.importSummary.minLineNumber, toInsertLine);

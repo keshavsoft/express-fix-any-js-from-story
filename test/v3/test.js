@@ -17,11 +17,15 @@ function runTests() {
 
     const checkLinesString = checkLines;
 
+    // console.log("extractRegex : ", extractRegex);
     const output = index({
         showLog: true,
-        jsFilePath: appJsPath,
+        inJsFilePath: appJsPath,
         inCheckLines: checkLinesString,
-        extractRegex
+        extractRegex,
+        showLogStep1: true,
+        showLogStep2: true,
+        showLogStep3: true
     });
 
     console.log("output : ", output);
