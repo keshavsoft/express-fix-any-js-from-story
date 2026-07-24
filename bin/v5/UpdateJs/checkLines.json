@@ -1,0 +1,4 @@
+{
+    "importInsertLine": "import { router as routerFrom${folderName} } from './${folderName}/end-points.js';",
+    "consumptionInsertLine": "router.use('/${endpoint}', routerFrom${folderName});"
+}
