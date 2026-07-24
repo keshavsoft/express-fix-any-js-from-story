@@ -7,14 +7,15 @@ import buildUpdatedContent from "./buildUpdatedContent.js";
 
 import getStory from "pattern-collector-anyjs";
 
-import extractRegex from './extractRegex.js';
+// import extractRegex from './extractRegex.js';
 
 const alterFile = ({
     jsFilePath,
     toInsertLine,
     duplicationCheck,
     insertAfter = [],
-    showLog = false
+    showLog = false,
+    extractRegex
 }) => {
     const content = readFile(jsFilePath);
 
