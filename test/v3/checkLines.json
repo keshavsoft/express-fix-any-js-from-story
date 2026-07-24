@@ -1,0 +1,10 @@
+{
+    "toInsertLine1": "import funcFrom${folderName} from './${folderName}/controller.js';",
+    "toInsertLine": "import { router as routerFromv3 } from './v3/routes.js';",
+    "duplicationCheck1": "from './${folderName}/controller.js'",
+    "duplicationCheck": "v3",
+    "insertAfter": [
+        "import funcFrom",
+        "import express"
+    ]
+}
