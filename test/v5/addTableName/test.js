@@ -1,14 +1,19 @@
 import path from "path";
+import { fileURLToPath } from "url";
+
 import index from "../../../index.js";
 
-// const currentFilePath = import.meta.filename;
-// console.log(currentFilePath);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const appJsPath = path.join(__dirname, "routes.js");
 
-const currentDirPath = import.meta.dirname;
+// const currentFilePath = import.meta.filename;
+// console.log(appJsPath);
+
+// const currentDirPath = import.meta.dirname;
 
 const result = index({
     showLog: true,
-    endPointsJsPath: path.join(currentDirPath, "routes.js"),
+    inJsFilePath: appJsPath,
     inActionName: "table1",
     inFolderName: "Fold1",
     inGetType: "simple",
