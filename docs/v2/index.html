@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Express.js Routing Fixer Suite | Developer Hub</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #070a13;
+      --bg-card: #0d1222;
+      --border-color: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      --accent-green: #34d399;
+      --accent-violet: #a78bfa;
+      --font-outfit: 'Outfit', sans-serif;
+      --font-inter: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-inter);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(129, 140, 248, 0.06) 0%, transparent 50%);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(7, 10, 19, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-family: var(--font-outfit);
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: -0.5px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav .logo span {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-left: 8px;
+      font-family: var(--font-inter);
+      font-weight: 400;
+      background: none;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+      border: 1px solid var(--border-color);
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    /* Hero Header */
+    header {
+      padding: 100px 8% 60px 8%;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      font-family: var(--font-outfit);
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    header h1 span {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    /* The Story Section */
+    .story-section {
+      padding: 60px 8%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .story-title {
+      font-family: var(--font-outfit);
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .story-subtitle {
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 1.1rem;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .story-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px 30px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56, 189, 248, 0.3);
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.05);
+    }
+
+    .story-card h3 {
+      font-family: var(--font-outfit);
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .story-card .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .badge-import {
+      background: rgba(167, 139, 250, 0.15);
+      color: var(--accent-violet);
+    }
+
+    .badge-consumption {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-green);
+    }
+
+    .badge-orchestrator {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+    }
+
+    .story-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Simulator */
+    .simulator-section {
+      background: #090e1a;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 80px 8%;
+    }
+
+    .simulator-container {
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+    }
+
+    .sim-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sim-panel h3 {
+      font-family: var(--font-outfit);
+      font-size: 1.25rem;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .form-group input, .form-group textarea {
+      background: #05070d;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .code-editor {
+      background: #05070d;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .code-preview {
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      white-space: pre;
+      overflow-x: auto;
+      flex-grow: 1;
+      color: var(--accent-green);
+      min-height: 250px;
+    }
+
+    .log-panel {
+      background: rgba(239, 68, 68, 0.05);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: #f87171;
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Footer */
+    footer {
+      background: #04060c;
+      padding: 40px 8%;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    footer p {
+      margin-bottom: 8px;
+    }
+
+    footer strong {
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="logo">routing-fixer-suite <span>V1.5</span></div>
+    <ul>
+      <li><a href="#story">The Story</a></li>
+      <li><a href="#simulator">Simulator</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Header -->
+  <header>
+    <h1>Idempotent & Modular <span>Express Routing</span> Repair</h1>
+    <p>
+      An advanced trio of orchestrating tools that inspect, parse, and repair Express.js routing files dynamically 
+      with complete duplication safeguard and strict architectural line formatting.
+    </p>
+  </header>
+
+  <!-- The Story Section -->
+  <section class="story-section" id="story">
+    <div class="story-title">How the Suite Fits Together</div>
+    <div class="story-subtitle">Three specialized components acting in alignment.</div>
+    
+    <div class="story-grid">
+      
+      <!-- Import Fixer -->
+      <div class="story-card">
+        <span class="badge badge-import">Imports</span>
+        <h3>Route Imports Fixer</h3>
+        <p>
+          Manages safe insertion of routing imports. Scans files to verify if target declarations exist 
+          prior to running mutations. Keeps top-level scope clean and conflict-free.
+        </p>
+      </div>
+
+      <!-- Consumption Fixer -->
+      <div class="story-card">
+        <span class="badge badge-consumption">Consumption</span>
+        <h3>Route Consumption Fixer</h3>
+        <p>
+          Applies endpoint utilization setups (`router.use` or `router.post`). Enforces strict line alignments 
+          (zero spacing between routers, correct padding around block bounds).
+        </p>
+      </div>
+
+      <!-- Orchestrator CLI -->
+      <div class="story-card">
+        <span class="badge badge-orchestrator">Orchestration</span>
+        <h3>Orchestrator CLI</h3>
+        <p>
+          Takes high-level declarations and pipelines them to trigger both the Imports and Consumption Fixers sequentially. 
+          Produces fully aligned, runnable endpoints instantly.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Simulator Section -->
+  <section class="simulator-section" id="simulator">
+    <div class="story-title">Interactive Orchestration Simulator</div>
+    <div class="story-subtitle">Experiment with the cascading builder setup live.</div>
+    
+    <div class="simulator-container">
+      
+      <!-- Controls Panel -->
+      <div class="sim-panel">
+        <h3>🔧 Simulator Inputs</h3>
+        
+        <div class="form-group">
+          <label>Target File Mock Content</label>
+          <textarea id="mock-content" rows="10">import express from "express";
+
+const router = express.Router();
+
+export { router };</textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Import Line to Add</label>
+          <input type="text" id="import-line" value="import GetRoutes from './routes/GetRoutes.js';">
+        </div>
+        
+        <div class="form-group">
+          <label>Consumption Line to Add</label>
+          <input type="text" id="consumption-line" value="router.use('/Get', GetRoutes);">
+        </div>
+      </div>
+      
+      <!-- Output / Result Panel -->
+      <div class="sim-panel">
+        <h3>🖥️ Output / Generated File</h3>
+        
+        <div class="log-panel" id="log-display"></div>
+        
+        <div class="code-editor">
+          <div class="code-preview" id="code-preview-display"></div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Developed with ❤️ by <strong>KeshavSoft</strong>.</p>
+    <p>Built for JavaScript, Node.js & Express.js developers.</p>
+  </footer>
+
+  <!-- Simulator Logic Script -->
+  <script>
+    const mockContentEl = document.getElementById('mock-content');
+    const importLineEl = document.getElementById('import-line');
+    const consumptionLineEl = document.getElementById('consumption-line');
+    const previewEl = document.getElementById('code-preview-display');
+    const logEl = document.getElementById('log-display');
+
+    function runSimulation() {
+      let content = mockContentEl.value;
+      const importLine = importLineEl.value;
+      const consumptionLine = consumptionLineEl.value;
+
+      // Simulate Import insertion
+      if (!content.includes(importLine)) {
+        const lines = content.split('\n');
+        // Insert after first line
+        lines.splice(1, 0, importLine);
+        content = lines.join('\n');
+      }
+
+      // Simulate Consumption insertion
+      if (!content.includes(consumptionLine)) {
+        const lines = content.split('\n');
+        // Find insert index (before export)
+        const exportIndex = lines.findIndex(l => l.includes('export'));
+        if (exportIndex !== -1) {
+          lines.splice(exportIndex, 0, consumptionLine, "");
+        } else {
+          lines.push(consumptionLine);
+        }
+        content = lines.join('\n');
+      }
+
+      previewEl.textContent = content;
+    }
+
+    mockContentEl.addEventListener('input', runSimulation);
+    importLineEl.addEventListener('input', runSimulation);
+    consumptionLineEl.addEventListener('input', runSimulation);
+
+    // Initial run
+    runSimulation();
+  </script>
+</body>
+</html>
