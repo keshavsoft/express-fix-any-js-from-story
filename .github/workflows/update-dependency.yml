@@ -29,7 +29,7 @@ jobs:
 
       - run: npm install
 
-      - run: npm install express-fix-any-js-from-for-consumption@latest express-fix-any-js-from-for-import@latest
+      - run: npm install express-fix-any-js-from-base@latest
 
       - name: Check for updates
         id: check
