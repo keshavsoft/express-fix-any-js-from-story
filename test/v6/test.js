@@ -1,7 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 
-import index from "../../../index.js";
+import index from "../../index.js";
 
 import extractRegex from './extractRegex.js';
 
