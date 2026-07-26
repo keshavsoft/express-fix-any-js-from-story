@@ -33,7 +33,7 @@ function runTests() {
         }
     });
 
-    // console.log("output : ", output);
+    console.log("output : ", output);
 };
 
 runTests();
